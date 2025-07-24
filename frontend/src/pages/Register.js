@@ -22,6 +22,7 @@ function Register() {
       body: JSON.stringify({ username, password, email }),
     });
 
+    // Read the body ONCE as text
     const text = await response.text();
     let data;
     try {
