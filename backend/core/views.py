@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import MultiPartParser, JSONParser
 from rest_framework.generics import ListAPIView
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view
@@ -46,7 +46,8 @@ def extract_skills(text):
 
 
 class RegisterView(APIView):
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
+    parser_classes = [JSONParser]
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -57,7 +58,7 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
-    permission_classes = [permissions.AllowAny] 
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request):
         username = request.data.get('username')
@@ -182,7 +183,7 @@ class ResumeListView(ListAPIView):
 
     def get_queryset(self):
         return Resume.objects.filter(user=self.request.user)
-    
+
 def get_resume_by_id(request, pk):
     if request.method == 'GET':
         try:
