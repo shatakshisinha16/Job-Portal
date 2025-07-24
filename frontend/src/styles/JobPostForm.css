@@ -1,0 +1,64 @@
+/* src/styles/JobPostForm.css */
+
+.jobpost-bg {
+  background: linear-gradient(to right, #dbeafe, #e0f2fe, #f0f9ff); /* Light sky blue shades */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.jobpost-container {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.jobpost-heading {
+  font-size: 28px;
+  color: #1e3a8a; /* Deep blue */
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.jobpost-form input,
+.jobpost-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  font-size: 16px;
+  color: #1e293b;
+  resize: none;
+}
+
+.jobpost-form input:focus,
+.jobpost-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #fff;
+}
+
+.jobpost-form button {
+  background-color: #1e3a8a; /* Same as navbar */
+  color: #ffffff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.jobpost-form button:hover {
+  background-color: #1d4ed8;
+}

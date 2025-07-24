@@ -1,0 +1,92 @@
+.navbar {
+  background-color: #1e3a8a; /* Navy blue */
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #bfdbfe; /* Lighter blue */
+}
+
+.brand-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.job-color {
+  color: #60a5fa;
+}
+
+.portal-color {
+  color: #facc15;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+/* DROPDOWN STYLING */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #1e40af; /* Darker blue */
+  top: 100%;
+  right: 0;
+  min-width: 180px;
+  z-index: 1000;
+  padding: 0.5rem 0;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.dropdown-content li {
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+.dropdown-content li:hover {
+  background-color: #3b82f6;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li a {
+  color: white;
+  display: block;
+}
+
+/* Ensure dropdown doesn't go out of screen */
+@media screen and (max-width: 600px) {
+  .dropdown-content {
+    right: 0;
+    left: auto;
+    min-width: 100vw;
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,97 @@
+/* MatchOnlineJobs.css */
+
+/* Background for entire page */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #e0f7ff, #f0faff); /* light sky-blue gradient */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Center wrapper */
+.match-online-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Card styling */
+.match-online-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+.match-online-card h2 {
+  text-align: center;
+  color: #002b5b;
+  margin-bottom: 1.5rem;
+}
+
+.match-online-card h3 {
+  margin-top: 2rem;
+  color: #004080;
+}
+
+/* Labels and inputs */
+.match-online-card label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.match-online-card select,
+.match-online-card input[type="text"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Match Button */
+.match-btn {
+  width: 100%;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.match-btn:hover {
+  background-color: #004080;
+}
+
+.match-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Job result card */
+.match-online-card .border {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .match-online-card {
+    padding: 1.2rem;
+  }
+}
