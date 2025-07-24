@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Register.css';
 
+const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://127.0.0.1:8000/api';
+
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +14,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://127.0.0.1:8000/api/register/', {
+    const response = await fetch(`${API_BASE_URL}/register/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

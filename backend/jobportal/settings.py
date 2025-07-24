@@ -1,16 +1,17 @@
 from pathlib import Path
 import dj_database_url
+from decouple import config, Csv
 
 # Base Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j=(way)e2#c-1w!zf@8h$!1=b(v_i9v5@7)16r0bi54yr#c8bv'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 # Application definition
 INSTALLED_APPS = [
@@ -64,9 +65,7 @@ WSGI_APPLICATION = 'jobportal.wsgi.application'
 # Database
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgresql://postgres.edyvlbcegqmwrsdarhth:Shatakshi@2003@aws-0-ap-south-1.pooler.supabase.com:5432/postgres'
-    )
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 # ✅ For future PostgreSQL migration, use:
 # DATABASES = {
@@ -114,9 +113,13 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media file settings
+# Whitenoise for static file serving
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

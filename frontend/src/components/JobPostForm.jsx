@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/JobPostForm.css'; // ✅ Make sure this path is correct
 
+const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://127.0.0.1:8000/api';
+
 const JobPostForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -19,7 +21,7 @@ const JobPostForm = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/jobs/',
+        `${API_BASE_URL}/jobs/`,
         { title, description, skills_required: skillsRequired },
         { headers: { Authorization: `Token ${token}` } }
       );

@@ -4,6 +4,8 @@ import axios from "axios";
 import '../styles/Login.css';
 import Navbar from '../components/Navbar';
 
+const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://127.0.0.1:8000/api';
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/login/", {
+      const res = await axios.post(`${API_BASE_URL}/login/`, {
         username,
         password,
       });
