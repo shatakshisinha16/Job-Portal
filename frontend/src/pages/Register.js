@@ -22,23 +22,19 @@ function Register() {
       body: JSON.stringify({ username, password, email }),
     });
 
+    const text = await response.text();
     let data;
     try {
-      data = await response.json();
-    } catch (err) {
-      // If response is not JSON (e.g., HTML error page)
-      const text = await response.text();
-      setError('Server error: ' + text.slice(0, 200));
-      return;
+      data = JSON.parse(text);
+    } catch {
+      data = text;
     }
 
     if (response.ok) {
       localStorage.setItem('token', data.token);
       navigate('/');
     } else {
-      setError(
-        typeof data === 'object' ? JSON.stringify(data) : String(data)
-      );
+      setError(typeof data === 'object' ? JSON.stringify(data) : String(data));
     }
   };
 

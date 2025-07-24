@@ -9,10 +9,12 @@ const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://127.0.0.1:
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       const res = await axios.post(`${API_BASE_URL}/login/`, {
         username,
@@ -21,7 +23,15 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     } catch (err) {
-      alert("Login failed: " + (err.response?.data?.detail || "Unknown error"));
+      if (err.response && err.response.data) {
+        setError(
+          typeof err.response.data === 'object'
+            ? JSON.stringify(err.response.data)
+            : String(err.response.data)
+        );
+      } else {
+        setError("Login failed: Unknown error");
+      }
     }
   };
 
@@ -54,6 +64,7 @@ const Login = () => {
             >
               Login
             </button>
+            {error && <p className="text-red-500 text-center mt-2">{error}</p>}
           </form>
           <p className="mt-4 text-center text-sm">
             New user?{" "}

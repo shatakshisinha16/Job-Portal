@@ -9,13 +9,17 @@ const JobPostForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [skillsRequired, setSkillsRequired] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
 
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('You must be logged in to post a job.');
+      setError('You must be logged in to post a job.');
       return;
     }
 
@@ -25,13 +29,20 @@ const JobPostForm = () => {
         { title, description, skills_required: skillsRequired },
         { headers: { Authorization: `Token ${token}` } }
       );
-      alert('Job posted successfully!');
+      setSuccess('Job posted successfully!');
       setTitle('');
       setDescription('');
       setSkillsRequired('');
     } catch (error) {
-      console.error('Error posting job:', error.response?.data || error.message);
-      alert('Failed to post job.');
+      if (error.response && error.response.data) {
+        setError(
+          typeof error.response.data === 'object'
+            ? JSON.stringify(error.response.data)
+            : String(error.response.data)
+        );
+      } else {
+        setError('Failed to post job.');
+      }
     }
   };
 
@@ -60,6 +71,8 @@ const JobPostForm = () => {
             onChange={(e) => setSkillsRequired(e.target.value)}
           />
           <button type="submit">Submit</button>
+          {error && <p className="error">Error: {error}</p>}
+          {success && <p className="success">{success}</p>}
         </form>
       </div>
     </div>

@@ -10,11 +10,20 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       const res = await API.post('/login/', { username, password });
       login(res.data.token);
     } catch (err) {
-      setError('Invalid credentials');
+      if (err.response && err.response.data) {
+        setError(
+          typeof err.response.data === 'object'
+            ? JSON.stringify(err.response.data)
+            : String(err.response.data)
+        );
+      } else {
+        setError('Invalid credentials');
+      }
     }
   };
 
